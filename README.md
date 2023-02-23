@@ -9,4 +9,4 @@ It is a simple and minimal tasks and project management application.
 - firebase
 - date-fns
 
-[link](url) to the site.
+[link](https://doit-tasks-manager.netlify.app/) to the site.

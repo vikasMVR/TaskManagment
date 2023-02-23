@@ -7,7 +7,7 @@ import { Btn, LinkBtn, NavLinkBtn } from './utilityconponents/buttons'
 export function SideNav() {
   return (
     <div className="h-full border-r-2 border-dashed grid grid-rows-6 items-center text-center ">
-      <div className="py-6   ">
+      <div className="py-6 self-start my-1 ">
         <h2 className="text-yellow-400 font-semibold font-mono text-3xl text-left px-4 md:px-12 select-none hidden md:block"><Link to='/'>Doit</Link></h2>
         <h2 className="text-yellow-400 font-semibold font-mono text-3xl text-center md:hidden select-none">D.</h2>
       </div>
