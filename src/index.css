@@ -2,11 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
 :root {
-  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Quicksand','Space Mono', monospace, sans-serif;
   font-size: 16px;
   line-height: 24px;
   font-weight: 400;
+  background-color: theme('colors.zinc.900');
 
   color-scheme: light dark;
   font-synthesis: none;
@@ -14,4 +17,15 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+}
+
+@layer components {
+  .Btn {
+    position: relative;
+    background-color: theme('colors.slate.500');
+    border-radius: theme('borderRadius.lg');
+    padding: theme('padding.2');
+    box-shadow: theme('boxShadow.DEFAULT');
+  }
+  /* ... */
 }
