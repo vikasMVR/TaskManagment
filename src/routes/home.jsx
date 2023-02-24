@@ -1,13 +1,16 @@
 import React, { useState } from 'react'
 import { LinkBtn } from '../components/utilityconponents/buttons';
-
+import {MenuNavHome} from '../components/navigation'
 
 export default function HomeRoute() {
   
   return (
-    <div className='flex flex-col h-screen space-y-4 items-center justify-center'>
-      <p className="font-medium">website creation is in progress. please go to dashboard section</p>
-      <LinkBtn type="button" classes={' hover:bg-slate-600 duration-200 ease-in bg-sky-500 '} link='/dashboard' >go to dashboard</LinkBtn>
+    <div className='h-full w-full'>
+        <MenuNavHome />
+
+        <div className="w-full h-[calc(100vh-64px)] ">
+            this is hoem page.
+        </div>
     </div>
   )
 }

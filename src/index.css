@@ -25,7 +25,7 @@
     background-color: theme('colors.slate.500');
     border-radius: theme('borderRadius.lg');
     padding: theme('padding.2');
-    box-shadow: theme('boxShadow.DEFAULT');
+    /* box-shadow: theme('boxShadow.DEFAULT'); */
   }
   /* ... */
 }
