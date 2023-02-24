@@ -9,7 +9,7 @@ export function SideNav() {
     <div className="h-full border-r-2 border-dashed grid grid-rows-6 items-center text-center ">
       <div className="py-6 self-start my-1 ">
         <h2 className="text-yellow-400 font-semibold font-mono text-3xl text-left px-4 md:px-12 select-none hidden md:block"><Link to='/'>Doit</Link></h2>
-        <h2 className="text-yellow-400 font-semibold font-mono text-3xl text-center md:hidden select-none">D.</h2>
+        <h2 className="text-yellow-400 font-semibold font-mono text-3xl text-center md:hidden select-none"><Link to='/'>D.</Link></h2>
       </div>
       <div className="p-2 md:p-6 text-left space-y-1 row-span-4 self-start" >
         <NavLinkBtn className={'flex items-center space-x-3 md:px-6 py-3 bg-transparent w-full hover:bg-yellow-500 hover:bg-opacity-20 '}
