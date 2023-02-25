@@ -7,7 +7,7 @@ import { Btn,NavLinkBtn } from './utilityconponents/buttons'
 
 export function SideNav() {
   return (
-    <div className=" hidden h-full sm:grid grid-rows-6 items-center  bg-zinc-800 bg-opacity-30 ">
+    <div className=" hidden h-full sm:grid grid-rows-6 items-center border-dashed border-r-4  border-r-yellow-300 border-opacity-30">
       <div className="py-4 self-start">
         <h2 className="text-yellow-400 font-bold font-mono text-4xl text-left px-4 md:px-12 select-none hidden md:block"><Link to='/'>Doit</Link></h2>
         <h2 className="text-yellow-400 font-bold font-mono text-4xl text-center md:hidden select-none"><Link to='/'>D.</Link></h2>
@@ -73,9 +73,9 @@ export function SideNav() {
 
 
 
-export function MenuNav({ pagetitle }) {
+export function TitleBar({ pagetitle }) {
   return (
-    <div className="grid grid-cols-4 py-3 px-2 md:px-8  items-center ">
+    <div className="grid grid-cols-4 py-3 px-2 md:px-6  items-center ">
       <div className=" flex col-span-2 space-x-1 items-center">
         <span className='font-light select-none text-xl md:text-2xl '>{pagetitle}</span>
       </div>

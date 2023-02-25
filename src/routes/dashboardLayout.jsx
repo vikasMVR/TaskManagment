@@ -1,7 +1,7 @@
 import React from 'react'
 import { HiSearch, HiBell, HiMenu } from 'react-icons/hi'
 import { Outlet } from 'react-router-dom'
-import { MenuNav, SideNav } from '../components/navigation'
+import { SideNav } from '../components/navigation'
 import { Btn } from '../components/utilityconponents/buttons'
 
 export default function DashboardLayout() {
