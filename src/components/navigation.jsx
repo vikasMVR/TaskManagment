@@ -1,7 +1,8 @@
+import clsx from 'clsx'
 import React, { useState } from 'react'
 import { HiBell, HiOutlineHome, HiOutlineCog, HiOutlineCalendar, HiOutlineChatAlt2, HiOutlineClipboardList, HiOutlineLogout, HiOutlineSearch, HiMenu } from "react-icons/hi"
-import { Link, NavLink, useLocation } from 'react-router-dom'
-import { Btn, LinkBtn, NavLinkBtn } from './utilityconponents/buttons'
+import { Link, } from 'react-router-dom'
+import { Btn,NavLinkBtn } from './utilityconponents/buttons'
 
 
 export function SideNav() {
@@ -12,8 +13,10 @@ export function SideNav() {
         <h2 className="text-yellow-400 font-bold font-mono text-4xl text-center md:hidden select-none"><Link to='/'>D.</Link></h2>
       </div>
       <div className="p-2 md:p-6 text-left space-y-1 row-span-4 self-start" >
-        <NavLinkBtn className={'flex items-center space-x-3 md:px-6 py-3 bg-transparent w-full hover:bg-yellow-500 hover:bg-opacity-10 '}
+
+        <NavLinkBtn className={'flex items-center space-x-3 md:px-6 py-3 bg-transparent w-full hover:bg-yellow-500 hover:bg-opacity-10'}
           link='/dashboard'
+          end
           style={({ isActive }) =>
             isActive ? { background: '#facc15', color: 'black' } : undefined
           } >
@@ -69,41 +72,16 @@ export function SideNav() {
 }
 
 
-export function MenuNavHome() {
-  return (
-    <div className="grid grid-cols-3 py-2 px-2 md:px-8  items-center ">
-      <div className=" sm:hidden flex col-span-2 space-x-1 items-center">
-        <Btn type='button' className="p-2 bg-transparent hover:bg-yellow-400 hover:bg-opacity-20">
-          <HiMenu className='text-xl' />
-        </Btn>
-        <span className='font-semibold text-yellow-400 text-2xl '>Doit</span>
-      </div>
-      <div className='hidden sm:block col-span-2 '>
-        <p className='text-xl sm:text-2xl my-2'>👋 Welcome Anurag! </p>
-      </div>
-      <div className="inline-flex space-x-3 items-center justify-self-end ">
-        <HiBell className='text-xl cursor-pointer' />
-        <Avatar />
-      </div>
-      <div className="sm:hidden w-full col-span-3">
-        <p className='text-xl sm:text-2xl my-2'>👋 Welcome Anurag! </p>
-      </div>
-    </div>
-  )
-}
 
-export function MenuNav({pagetitle}) {
+export function MenuNav({ pagetitle }) {
   return (
-    <div className="grid grid-cols-3 py-3 px-2 md:px-8  items-center ">
-      <div className=" flex  space-x-1 items-center">
-        <Btn type='button' className="sm:hidden p-2 bg-transparent hover:bg-yellow-400 hover:bg-opacity-20">
-          <HiMenu className='text-xl' />
-        </Btn>
-        <span className='font-light select-none  text-2xl '>{pagetitle}</span>
+    <div className="grid grid-cols-4 py-3 px-2 md:px-8  items-center ">
+      <div className=" flex col-span-2 space-x-1 items-center">
+        <span className='font-light select-none text-xl md:text-2xl '>{pagetitle}</span>
       </div>
       <div className="inline-flex col-span-2 space-x-3 items-center justify-self-end ">
-        <div className="max-w-xs">
-        <SearchBar />
+        <div className=" max-w-[160px] sm:max-w-xs">
+          <SearchBar />
         </div>
         <HiBell className='text-xl cursor-pointer' />
         <Avatar />
@@ -116,13 +94,18 @@ export function MenuNav({pagetitle}) {
 
 export function SearchBar({ ...props }) {
   return (
-    <div className="w-full">
-      <div className="flex items-center space-x-2 rounded-lg  py-2 px-3 border border-transparent sm:bg-zinc-800 focus-within:border hover:bg-sky-400 hover:bg-opacity-10 ">
-        <HiOutlineSearch className='text-xl ' />
+    <div className="sm:w-full">
+      <div className={clsx(
+        "flex items-center space-x-2 px-2 py-1 bg-zinc-800 rounded-lg focus-within:outline-1 focus-within:outline hover:bg-sky-400 hover:bg-opacity-20 duration-200 ease-in",
+      )}>
+        <Btn className="rounded-lg p-0 bg-transparent cursor-default  "
+        >
+          <HiOutlineSearch className='text-xl ' />
+        </Btn>
         <input
           type="text"
           placeholder='search tasks here...'
-          className='bg-transparent w-full outline-none hidden sm:block '
+          className={clsx('bg-transparent w-full outline-none')}
           {...props} />
       </div>
     </div>
@@ -131,7 +114,7 @@ export function SearchBar({ ...props }) {
 
 function Avatar({ imgUrl, ...props }) {
   return (
-    <div className="rounded-full p-1 hover:bg-yellow-400 duration-200 hover:bg-opacity-80 ease-in  cursor-pointer">
+    <div className="rounded-full p-1 hover:bg-yellow-400 duration-200 hover:bg-opacity-80 ease-in  cursor-pointer select-none">
       <img src={!imgUrl ? "https://tecdn.b-cdn.net/img/new/avatars/2.webp" : imgUrl} alt={"user"} className="rounded-full w-8" {...props} />
     </div>
   )

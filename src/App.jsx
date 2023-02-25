@@ -9,14 +9,14 @@ import SpinnerElement from './components/spinner'
 import PageNotFound from './routes/pagenotfound'
 import HomeRoute from './routes/home'
 import DashboardLayout from './routes/dashboardLayout'
-import Tasks from './routes/tasks/tasks'
+import Tasks from './routes/taskspage/tasks'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
       <Route path='/' element={<HomeRoute />} />
       <Route path='/dashboard' element={<DashboardLayout />}>
-        <Route index element={<HomeRoute />} />
+        <Route  index element={<HomeRoute />} />
         <Route path='tasks' element={<Tasks />} />
       </Route>
       <Route path='*' element={<PageNotFound />} />
