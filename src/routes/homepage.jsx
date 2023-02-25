@@ -25,7 +25,11 @@ export default function Homepage() {
                 </div>
             </div>
 
-            <div className="h-screen w-full bg-indigo-400">
+            <div className="h-screen w-full">
+                <div className="flex flex-col items-center justify-center px-6 py-4 h-full">
+                    <p className="font-normal text-xl">the website is not yet complete. you can move directly to the dashboard seciton</p>
+                    <LinkBtn link={'/dashboard'} > go to dashboard</LinkBtn>
+                </div>
             </div>
         </div>
     )
