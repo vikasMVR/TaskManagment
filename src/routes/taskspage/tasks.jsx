@@ -9,7 +9,7 @@ export default function Tasks() {
       <div className="w-full h-[calc(100vh-64px)] ">
 
         <div className="w-full bg-zinc-800 px-6 py-1 grid grid-cols-5">
-          
+
           <div className="col-span-2 space-x-2">
             <Btn type='button' className={'text-sm font-medium px-2 py-1.5 bg-yellow-400 bg-opacity-20 hover:bg-opacity-40 focus:bg-opacity-100 focus:text-black'}>
               Card

@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import { LinkBtn } from '../components/utilityconponents/buttons';
-import {TitleBar} from '../components/navigation'
+import { LinkBtn } from '../../components/utilityconponents/buttons';
+import {TitleBar} from '../../components/navigation'
 
-export default function HomeRoute() {
+export default function DashboardHome() {
   
   return (
     <div className='h-full w-full'>
