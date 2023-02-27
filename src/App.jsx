@@ -11,6 +11,8 @@ import DashboardLayout from './routes/dashboardLayout'
 import Tasks from './routes/taskspage/tasks'
 import DashboardHome from './routes/dashboardhome/home'
 import Homepage from './routes/homepage'
+import Register from './routes/register'
+import Login from './routes/login'
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
@@ -19,6 +21,8 @@ const router = createBrowserRouter(
         <Route  index element={<DashboardHome />} />
         <Route path='tasks' element={<Tasks />} />
       </Route>
+      <Route path='/register' element={<Register/>} />
+      <Route path='/login' element={<Login/>} />
       <Route path='*' element={<PageNotFound />} />
     </>
   )

@@ -3,12 +3,12 @@ import { NavLink } from 'react-router-dom'
 import { LinkBtn } from '../components/utilityconponents/buttons'
 export default function Homepage() {
     return (
-        <div className='w-full bg-zinc-900'>
-            
-            <div className="h-screen relative ">
-                <div className="absolute w-full top-0">
-                    <HomeNav />
-                </div>
+        <div className='w-full bg-zinc-900 '>
+            <div className="sticky w-full top-0 py-2  bg-zinc-800 bg-opacity-50 backdrop-blur-sm z-10 after:h-40 after:w-60 after:bg-zinc-800 ">
+                <HomeNav />
+            </div>
+
+            <div className=" h-[calc(100vh-100px)] relative">
                 <div className="h-full flex flex-col justify-center items-center px-2">
                     <h1 className="font-bold text-4xl sm:text-6xl lg:text-8xl text-center space-x-3 sm:space-x-4 md:space-x-6">
                         <span className="text-yellow-400 ">Doit</span>
@@ -31,6 +31,14 @@ export default function Homepage() {
                     <LinkBtn link={'/dashboard'} > go to dashboard</LinkBtn>
                 </div>
             </div>
+
+            <div className="h-screen w-full">
+                <div className="flex flex-col items-center justify-center px-6 py-4 h-full">
+                    <p className="font-normal text-xl">the website is not yet complete. you can move directly to the dashboard seciton</p>
+                    <LinkBtn link={'/dashboard'} > go to dashboard</LinkBtn>
+                </div>
+            </div>           
+
         </div>
     )
 }
@@ -38,7 +46,7 @@ export default function Homepage() {
 function HomeNav() {
     return (
         <nav className="w-full ">
-            <div className=" mx-8 h-20">
+            <div className=" mx-8 h-16">
                 <div className="flex items-center space-x-2 sm:space-x-8 justify-center h-full">
                     <NavLink to={'#'} end
                         className={" text-lg hover:text-yellow-400 duration-200 ease-in border-b-2 border-transparent hover:border-yellow-400 focus:border-yellow-400 px-2 text"}>
