@@ -1,30 +1,17 @@
-import React, { useState } from 'react'
-import { FaGoogle, } from "react-icons/fa"
-import { HiOutlineX, } from 'react-icons/hi'
-import { Link } from 'react-router-dom'
+import clsx from 'clsx'
 import { useFormik } from 'formik'
+import React, { useState } from 'react'
+import { HiOutlineRefresh, HiOutlineX } from 'react-icons/hi'
+import { Link, useNavigate } from 'react-router-dom'
 import * as Yup from 'yup'
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from '../firebase-config'
-// import { useNavigate } from 'react-router-dom'
+import { useUserAuth } from '../content/userAuthContext'
 
 
 export function Register() {
-    const [SSerror, setSSerror] = useState(null);
-
-    async function registerUser(values) {
-        try {
-            const user = await createUserWithEmailAndPassword(auth, values.email, values.password);
-        }
-        catch (error) {
-            console.log(error.code);
-            if(error.code==='auth/email-already-in-use'){
-                setSSerror("email invalid or already in use");
-            }
-            
-        }
-    }
-
+    const { SignUp } = useUserAuth();
+    const [Ferror, setFerror] = useState(null);
+    const [formsubmitting, setformsubmitting] = useState(false);
+    const navigate = useNavigate();
     const formik = useFormik({
         initialValues: {
             email: "",
@@ -45,38 +32,49 @@ export function Register() {
                 .oneOf([Yup.ref('password'), null], "must be equal to password")
                 .required('required'),
         }),
-        onSubmit: (values) => {
+        onSubmit: async (values) => {
             console.log("values from form: ", values);
-            registerUser(values);
+            setformsubmitting(true);
+            try {
+                await SignUp(values.email, values.password);
+                navigate('/profile');
+            } catch(error) {
+                let error_msg = error.code
+                    .replaceAll("auth", '')
+                    .replaceAll('-', ' ')
+                    .replaceAll('/', ' ')
+                setFerror(error_msg);
+                setformsubmitting(false);
+            }
         },
     });
-
-
 
     return (
         <div className="h-screen ">
             <div className="h-5/6 grid place-content-center">
 
-                <div className=" min-w-[18rem] max-w-[22rem] mx-2">
+                <div className=" min-w-[18rem] max-w-[22rem] mx-2 ">
                     <Link to='/' className='text-4xl font-semibold text-center block '>
                         <span className="text-yellow-400 ">Doit</span>
                     </Link>
                     <h2 className="text-2xl font-thin font-sans text-center my-6 ">Create an account</h2>
 
-                    {SSerror &&
+                    {Ferror &&
                         <p className="w-full inline-flex items-center justify-between bg-rose-600 bg-opacity-60  px-4 mb-2 py-3 rounded-lg font-light text-xs text-rose-300 select-none">
-                            <span>{SSerror}</span>
+                            <span>{Ferror}</span>
                             <button type='button'
-                            onClick={()=> setSSerror(null)} >
-                            <HiOutlineX className='text-lg' />
+                                onClick={() => setFerror(null)} >
+                                <HiOutlineX className='text-lg' />
                             </button>
                         </p>}
 
                     <form
-                        onSubmit={formik.handleSubmit}
-                        className='space-y-4 bg-zinc-800 bg-opacity-50 rounded-lg p-4 mb-2'>
-
-
+                        onSubmit={(e) => {
+                            e.preventDefault();
+                            formik.handleSubmit(e);
+                        }}
+                        className={clsx('space-y-4 bg-zinc-800 bg-opacity-50 rounded-lg p-4 mb-2',
+                        )}>
 
                         <div className="">
                             <label htmlFor="email" className='font-extralight select-none'>email</label>
@@ -126,17 +124,9 @@ export function Register() {
                         <div className="bg-indigo-500 bg-opacity-60 hover:bg-sky-800 rounded-lg duration-150 ease-in">
                             <button
                                 type="submit"
-                                className='w-full px-3 py-1.5   '>
-                                Sign up
-                            </button>
-                        </div>
-
-                        <p className="before:inline before:content-['---------------------'] after:inline after:content-['---------------------'] before:pr-4 after:pl-4 text-center font-extralight text-base text-slate-400 select-none">or</p>
-
-                        <div className="rounded-lg bg-amber-500 bg-opacity-80 focus-within:bg-yellow-400 duration-200 ease-in ">
-                            <button type='button' className="inline-flex space-x-3 items-center justify-center w-full py-2 ">
-                                <FaGoogle className='text-slate-800' />
-                                <span className="font-light text-slate-800">Sign up with Google</span>
+                                disabled={(formik.errors.email && formik.errors.password && formik.errors.confirm_password) || formsubmitting}
+                                className='w-full px-3 py-1.5 disabled:bg-slate-600 disabled:rounded-lg '>
+                                {formsubmitting === true ? <HiOutlineRefresh className='text-white my-1 w-full text-center animate-spin' /> : "Sign up"}
                             </button>
                         </div>
 
@@ -152,4 +142,3 @@ export function Register() {
         </div>
     )
 }
-

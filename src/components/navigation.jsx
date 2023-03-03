@@ -1,8 +1,14 @@
 import clsx from 'clsx'
-import React, { useState } from 'react'
-import { HiBell, HiOutlineHome, HiOutlineCog, HiOutlineCalendar, HiOutlineChatAlt2, HiOutlineClipboardList, HiOutlineLogout, HiOutlineSearch, HiMenu } from "react-icons/hi"
-import { Link, } from 'react-router-dom'
-import { Btn,NavLinkBtn } from './utilityconponents/buttons'
+import { signOut } from "firebase/auth"
+import React from 'react'
+import {
+  HiBell, HiOutlineCalendar,
+  HiOutlineChatAlt2, HiOutlineClipboardList, HiOutlineCog, HiOutlineHome, HiOutlineQuestionMarkCircle, HiOutlineSearch
+} from "react-icons/hi"
+import { Link, useNavigate } from 'react-router-dom'
+import { useUserAuth } from '../content/userAuthContext'
+import { auth } from '../firebase-config'
+import { Btn, NavLinkBtn } from './utilityconponents/buttons'
 
 
 export function SideNav() {
@@ -21,16 +27,16 @@ export function SideNav() {
             isActive ? { background: '#facc15', color: 'black' } : undefined
           } >
           <HiOutlineHome className='text-xl' />
-          <span className="font-medium hidden md:block">Home</span>
+          <span className="font-light hidden md:block">Home</span>
         </NavLinkBtn>
 
         <NavLinkBtn className={'flex items-center space-x-3 md:px-6 py-3 bg-transparent w-full hover:bg-yellow-500 hover:bg-opacity-10 '}
-          link='/dashboard/tasks'
+          link='/tasks'
           style={({ isActive }) =>
             isActive ? { background: '#facc15', color: 'black' } : undefined
           } >
           <HiOutlineClipboardList className='text-xl' />
-          <span className="font-medium hidden md:block">My Tasks</span>
+          <span className="font-light hidden md:block">My Tasks</span>
         </NavLinkBtn>
 
         <NavLinkBtn className={'flex items-center space-x-3 md:px-6 py-3 bg-transparent w-full hover:bg-yellow-500 hover:bg-opacity-10 '}
@@ -39,7 +45,7 @@ export function SideNav() {
             isActive ? { background: '#facc15', color: 'black' } : undefined
           } >
           <HiOutlineCalendar className='text-xl' />
-          <span className="font-medium hidden md:block">Calendar</span>
+          <span className="font-light hidden md:block">Calendar</span>
         </NavLinkBtn>
 
         <NavLinkBtn className={'flex items-center space-x-3 md:px-6 py-3 bg-transparent w-full hover:bg-yellow-500 hover:bg-opacity-10 '}
@@ -48,7 +54,7 @@ export function SideNav() {
             isActive ? { background: '#facc15', color: 'black' } : undefined
           } >
           <HiOutlineChatAlt2 className='text-xl' />
-          <span className="font-medium hidden md:block">Inbox</span>
+          <span className="font-light hidden md:block">Inbox</span>
         </NavLinkBtn>
 
         <NavLinkBtn className={'flex items-center space-x-3 md:px-6 py-3 bg-transparent w-full hover:bg-yellow-500 hover:bg-opacity-10 '}
@@ -57,23 +63,25 @@ export function SideNav() {
             isActive ? { background: '#facc15', color: 'black' } : undefined
           } >
           <HiOutlineCog className='text-xl' />
-          <span className="font-medium hidden md:block">Settings</span>
+          <span className="font-light hidden md:block">Settings</span>
         </NavLinkBtn>
       </div>
       <div className="p-2 md:px-4 self-end">
         <Btn type={'button'}
-          className={"flex items-center space-x-3 md:px-8 py-3 bg-transparent justify-start w-full hover:bg-red-500 hover:bg-opacity-30"}>
-          <HiOutlineLogout className='text-xl' />
-          <span className="font-medium hidden md:block">Logout</span>
+          className={"flex items-center space-x-3 md:px-8 py-3 bg-transparent justify-start w-full hover:bg-sky-400 hover:bg-opacity-40 hover:cursor-help"}>
+          {/* <HiOutlineLogout className='text-xl' />
+          <span className="font-medium hidden md:block">Logout</span> */}
+          <HiOutlineQuestionMarkCircle className='text-xl ' />
+          <span className="font-meduim hidden md:block">Help</span>
         </Btn>
       </div>
     </div>
   )
 }
 
-
-
 export function TitleBar({ pagetitle }) {
+  const { signOut } = useUserAuth();
+  const navigate = useNavigate();
   return (
     <div className="grid grid-cols-4 py-3 px-2 md:px-6  items-center ">
       <div className=" flex col-span-2 space-x-1 items-center">
@@ -84,12 +92,17 @@ export function TitleBar({ pagetitle }) {
           <SearchBar />
         </div>
         <HiBell className='text-xl cursor-pointer' />
-        <Avatar />
+        <Btn
+          className={"bg-transparent "}
+          onClick={() => {
+            // signOut();
+            navigate('/profile')
+            console.log("signout from navigation.")
+          }}><Avatar /></Btn>
       </div>
-    </div>
+    </div >
   )
 }
-
 
 
 export function SearchBar({ ...props }) {
@@ -114,8 +127,9 @@ export function SearchBar({ ...props }) {
 
 function Avatar({ imgUrl, ...props }) {
   return (
-    <div className="rounded-full p-1 hover:bg-yellow-400 duration-200 hover:bg-opacity-80 ease-in  cursor-pointer select-none">
-      <img src={!imgUrl ? "https://tecdn.b-cdn.net/img/new/avatars/2.webp" : imgUrl} alt={"user"} className="rounded-full w-8" {...props} />
+    <div className="rounded-full p-1 w-8 overflow-clip hover:bg-yellow-400 duration-200 hover:bg-opacity-80 ease-in  cursor-pointer select-none">
+      <img src={!imgUrl ? "https://tecdn.b-cdn.net/img/new/avatars/2.webp" : imgUrl} alt={"user"} className="rounded-full w-8 " {...props} />
     </div>
   )
 }
+

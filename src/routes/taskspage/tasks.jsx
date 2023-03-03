@@ -11,10 +11,10 @@ export default function Tasks() {
         <div className="w-full bg-zinc-800 px-6 py-1 grid grid-cols-5">
 
           <div className="col-span-2 space-x-2">
-            <Btn type='button' className={'text-sm font-medium px-2 py-1.5 bg-yellow-400 bg-opacity-20 hover:bg-opacity-40 focus:bg-opacity-100 focus:text-black'}>
+            <Btn type='button' className={'text-sm font-light px-2 py-1.5 bg-yellow-400 bg-opacity-20 hover:bg-opacity-40 focus:bg-opacity-100 focus:text-black'}>
               Card
             </Btn>
-            <Btn type='button' className={'text-sm font-medium px-2 py-1.5 bg-yellow-400 bg-opacity-20 hover:bg-opacity-40 focus:bg-opacity-100 focus:text-black'}>
+            <Btn type='button' className={'text-sm font-light px-2 py-1.5 bg-yellow-400 bg-opacity-20 hover:bg-opacity-40 focus:bg-opacity-100 focus:text-black'}>
               Table
             </Btn>
           </div>
@@ -22,7 +22,7 @@ export default function Tasks() {
           <div className="flex col-start-3 justify-self-end col-span-3 space-x-2">
             <Btn type={'button'} className="inline-flex items-center text-sm px-1 py-1.5 bg-yellow-400 bg-opacity-20 hover:bg-opacity-40 focus:bg-opacity-100 focus:text-black">
             <HiOutlinePlus className="text-lg"/>
-             <span className="text-sm">Task</span>
+             <span className="text-sm font-light">Task</span>
             </Btn>
             <Dropdown />
           </div>
@@ -43,7 +43,7 @@ export function Dropdown({ }) {
         type="button"
         className={'inline-flex justify-center items-center space-x-1 px-1 py-1.5 relative w-full peer bg-yellow-400 bg-opacity-20 hover:bg-opacity-40 focus:bg-opacity-100 focus:text-black'} >
         <HiOutlineSortAscending />
-        <span className="text-sm">
+        <span className="text-sm font-light">
           Sort by
         </span>
         <HiOutlineChevronDown />
@@ -54,7 +54,8 @@ export function Dropdown({ }) {
         {items.map(item => {
           return (
             <Btn key={item}
-            className="text-sm  w-full bg-transparent hover:bg-yellow-400 hover:bg-opacity-50">
+            onClick={()=> console.log('hellow')}
+            className="text-sm font-light w-full bg-transparent hover:bg-yellow-400 hover:bg-opacity-50">
               {item}
             </Btn>
           )
