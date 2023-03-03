@@ -56,7 +56,7 @@ export function Login() {
                     <Link to='/' className='text-4xl font-semibold text-center block '>
                         <span className="text-yellow-400 ">Doit</span>
                     </Link>
-                    <h2 className="text-2xl font-thin font-sans text-center my-6 ">Create an account</h2>
+                    <h2 className="text-2xl font-thin font-sans text-center my-6 ">Sign in to your account</h2>
 
                     {Ferror &&
                         <p className="w-full inline-flex items-center justify-between bg-rose-600 bg-opacity-60  px-4 mb-2 py-3 rounded-lg font-light text-xs text-rose-300 select-none">
