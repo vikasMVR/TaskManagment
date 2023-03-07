@@ -5,8 +5,7 @@ import { useUserAuth } from '../../content/userAuthContext';
 
 export default function UserProfile() {
     const navigate = useNavigate();
-    const { user,SignOut } = useUserAuth();
-    
+    const { user,SignOut } = useUserAuth();    
     const displayName = user?.displayName;
     const email = user?.email;
     const photoURL = user?.photoURL;

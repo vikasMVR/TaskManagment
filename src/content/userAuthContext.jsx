@@ -10,7 +10,7 @@ const userAuthContext = createContext();
 
 export function UserAuthContextProvider({children}){
     // remove null as default value. in error case.
-    const [user,setUser] = useState("");
+    const [user,setUser] = useState();
 
     function SignUp(email,password){
         return createUserWithEmailAndPassword(auth, email, password);        

@@ -80,7 +80,7 @@ export function SideNav() {
 }
 
 export function TitleBar({ pagetitle }) {
-  const { signOut } = useUserAuth();
+  const { SignOut } = useUserAuth();
   const navigate = useNavigate();
   return (
     <div className="grid grid-cols-4 py-3 px-2 md:px-6  items-center ">
@@ -95,12 +95,30 @@ export function TitleBar({ pagetitle }) {
         <Btn
           className={"bg-transparent "}
           onClick={() => {
-            // signOut();
-            navigate('/profile')
-            console.log("signout from navigation.")
+            return (<Dropdown />)
           }}><Avatar /></Btn>
       </div>
     </div >
+  )
+}
+
+function Dropdown() {
+  const { SignOut } = useUserAuth();
+  const navigate = useNavigate();
+  return (
+    <div className="absolute">
+      <div className="w-40 rounded bg-transparent space-y-1">
+        <Link to={'/profile'}
+          className="font-light text-sm px-3 py-2" >
+          profile
+        </Link>
+        <button
+          onClick={() => { SignOut(); navigate('/login') }}
+          className="font-light text-sm px-3 py-2" >
+          profile
+        </button>
+      </div>
+    </div>
   )
 }
 
