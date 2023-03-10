@@ -1,5 +1,4 @@
 import clsx from 'clsx'
-import { signOut } from "firebase/auth"
 import React from 'react'
 import {
   HiBell, HiOutlineCalendar,
@@ -94,8 +93,9 @@ export function TitleBar({ pagetitle }) {
         <HiBell className='text-xl cursor-pointer' />
         <Btn
           className={"bg-transparent "}
-          onClick={() => {
-            return (<Dropdown />)
+          onClick={() => {    
+            SignOut()
+            navigate('/login')             
           }}><Avatar /></Btn>
       </div>
     </div >
