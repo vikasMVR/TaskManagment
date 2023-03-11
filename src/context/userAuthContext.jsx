@@ -21,13 +21,13 @@ export function UserAuthContextProvider({ children }) {
         signOut(auth);
     }
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+        const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
             setUser(currentUser);
-        })
+        });
         return () => {
             unsubscribe();
-        }
-    }, [])
+        };
+    }, [auth])
 
     return <userAuthContext.Provider value={{ user, SignUp, SignIn, SignOut }} >{children}</userAuthContext.Provider>
 }
