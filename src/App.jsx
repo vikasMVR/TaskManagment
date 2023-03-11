@@ -36,7 +36,7 @@ export default function App() {
 }
 
 export function ProtectedRoute({ children }) {
-  const { user } =  useUserAuth();  
+  const {user} = useUserAuth();  
   if (!user) {
     return <Navigate to="/login" />;
   }
