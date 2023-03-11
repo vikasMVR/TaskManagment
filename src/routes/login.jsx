@@ -6,7 +6,7 @@ import clsx from 'clsx'
 import * as Yup from 'yup'
 import { HiOutlineRefresh, HiOutlineX } from 'react-icons/hi'
 import { auth } from '../firebase-config'
-import { useUserAuth } from '../content/userAuthContext'
+import { useUserAuth } from '../context/userAuthContext'
 
 
 

@@ -18,14 +18,3 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 }
-
-@layer components {
-  .Btn {
-    position: relative;
-    background-color: theme('colors.slate.500');
-    border-radius: theme('borderRadius.lg');
-    padding: theme('padding.2');
-    /* box-shadow: theme('boxShadow.DEFAULT'); */
-  }
-  /* ... */
-}

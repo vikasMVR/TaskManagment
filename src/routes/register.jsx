@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import { HiOutlineRefresh, HiOutlineX } from 'react-icons/hi'
 import { Link, Navigate, useNavigate } from 'react-router-dom'
 import * as Yup from 'yup'
-import { useUserAuth } from '../content/userAuthContext'
+import { useUserAuth } from '../context/userAuthContext'
 
 
 export function Register() {

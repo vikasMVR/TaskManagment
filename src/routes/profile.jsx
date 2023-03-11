@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import { Link, useNavigate } from 'react-router-dom';
-import { useUserAuth } from '../../content/userAuthContext';
+import { useUserAuth } from '../context/userAuthContext';
 
 
 export default function UserProfile() {
