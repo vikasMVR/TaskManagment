@@ -8,33 +8,30 @@ import { auth } from "../firebase-config";
 
 const userAuthContext = createContext();
 
-export function UserAuthContextProvider({children}){
+export function UserAuthContextProvider({ children }) {
     // remove null as default value. in error case.
-    const [user,setUser] = useState(null);
-
-    function SignUp(email,password){
-        return createUserWithEmailAndPassword(auth, email, password);        
+    const [user, setUser] = useState(auth.currentUser);
+    function SignUp(email, password) {
+        return createUserWithEmailAndPassword(auth, email, password);
     }
-    function SignIn(email,password){
-        return signInWithEmailAndPassword(auth,email,password);
+    function SignIn(email, password) {
+        return signInWithEmailAndPassword(auth, email, password);
     }
-    function SignOut(){
-        signOut(auth);        
-        console.log("logged out");
+    function SignOut() {
+        signOut(auth);
     }
-
-    useEffect(()=>{
-        const unsubscribe = onAuthStateChanged(auth,(currentUser)=>{            
-            setUser(currentUser);            
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+            setUser(currentUser);
         })
         return () => {
             unsubscribe();
         }
-    },[])
+    }, [])
 
-    return <userAuthContext.Provider value={{user,SignUp,SignIn,SignOut}} >{children}</userAuthContext.Provider>
+    return <userAuthContext.Provider value={{ user, SignUp, SignIn, SignOut }} >{children}</userAuthContext.Provider>
 }
 
-export function useUserAuth(){
+export function useUserAuth() {
     return useContext(userAuthContext);
 }

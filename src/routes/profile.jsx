@@ -5,7 +5,7 @@ import { useUserAuth } from '../context/userAuthContext';
 
 export default function UserProfile() {
     const navigate = useNavigate();
-    const { user,SignOut } = useUserAuth();    
+    const { user, SignOut } = useUserAuth();
     const displayName = user?.displayName;
     const email = user?.email;
     const photoURL = user?.photoURL;
@@ -20,12 +20,11 @@ export default function UserProfile() {
                     <div className="flex flex-col items-start">
                         <p className="text-2xl font-normal text-white">{displayName ? displayName : "User's Name"}</p>
                         <p className="text-lg font-light text-slate-500"><Link to={"#"}>{email ? email : "user's email"}</Link></p>
-                        <button 
-                        type='button'onClick={()=>{
-                            SignOut();
-                            navigate('/login');
-                        }}
-                        className="px-3 py-1 rounded-lg font-light bg-slate-600">
+                        <button
+                            type='button' onClick={() => {
+                                SignOut()
+                            }}
+                            className="px-3 py-1 rounded-lg font-light bg-slate-600">
                             Sign out
                         </button>
                     </div>
