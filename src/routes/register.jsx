@@ -22,7 +22,7 @@ export default function Register() {
         }
     }
     if (user) {
-        return <Navigate to={'/profile'} />
+        return <Navigate replace to={'/profile'} />
     }
     else {
         return (

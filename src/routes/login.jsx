@@ -13,8 +13,7 @@ export default function Login() {
     const [user,,SignIn,] = useAuthState();
     const [formstate, setformstate] = useState({ submitting: false, error: null });
 
-    const handleFormSubmit = async (values) => {
-        console.log(values);
+    const handleFormSubmit = async (values) => {       
         setformstate({ ...formstate, submitting: true })
         try {
             await SignIn(values.email, values.password)
@@ -25,7 +24,7 @@ export default function Login() {
         }
     }
     if (user) {
-        return <Navigate to='/dashboard' />
+        return <Navigate replace to='/dashboard' />
     }
     if (!user) {
         return (

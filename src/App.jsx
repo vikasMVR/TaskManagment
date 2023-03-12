@@ -29,9 +29,9 @@ export default function App() {
 }
 
 export function ProtectedRoute({ children }) {
-  const [user] = useAuthState();
+  const [user,,,] = useAuthState();
   if (!user) {
-    return <Navigate to="/login" />;
+    return <Navigate replace={true} to="/login" />;
   }
   return children;
 }
