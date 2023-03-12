@@ -6,11 +6,11 @@ import { HiOutlineRefresh, HiOutlineX } from 'react-icons/hi'
 import { Link, Navigate } from 'react-router-dom'
 import * as Yup from 'yup'
 import { InputField } from '../components/form-inputs'
-import { useUserAuth } from '../context/userAuthContext'
+import { useAuthState } from '../myhooks/useAuthState'
 
 
 export default function Login() {
-    const { user, SignIn } = useUserAuth();
+    const [user,,SignIn,] = useAuthState();
     const [formstate, setformstate] = useState({ submitting: false, error: null });
 
     const handleFormSubmit = async (values) => {

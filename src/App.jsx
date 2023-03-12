@@ -1,18 +1,13 @@
 import React from 'react'
 import {
-  createBrowserRouter,
-  RouterProvider,
-  createRoutesFromElements,
-  Route,
+  createBrowserRouter, createRoutesFromElements, Navigate, Route, RouterProvider
 } from "react-router-dom"
-import PageNotFound from './routes/pagenotfound'
+import { useAuthState } from './myhooks/useAuthState'
 import Homepage from './routes/homepage'
-import Register from './routes/register'
 import Login from './routes/login'
-import { UserAuthContextProvider } from './context/userAuthContext'
-import { useUserAuth } from './context/userAuthContext'
+import PageNotFound from './routes/pagenotfound'
 import UserProfile from './routes/profile'
-import { Navigate } from 'react-router-dom'
+import Register from './routes/register'
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
@@ -28,15 +23,13 @@ const router = createBrowserRouter(
 export default function App() {
   return (
     <div className="App">
-      <UserAuthContextProvider>
-        <RouterProvider router={router} />
-      </UserAuthContextProvider>
+      <RouterProvider router={router} />
     </div>
   )
 }
 
 export function ProtectedRoute({ children }) {
-  const {user} = useUserAuth();  
+  const [user] = useAuthState();
   if (!user) {
     return <Navigate to="/login" />;
   }

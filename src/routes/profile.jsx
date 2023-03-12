@@ -1,11 +1,12 @@
 import clsx from 'clsx';
 import { Link, useNavigate } from 'react-router-dom';
-import { useUserAuth } from '../context/userAuthContext';
+import { useAuthState } from '../myhooks/useAuthState';
+
 
 
 export default function UserProfile() {
     const navigate = useNavigate();
-    const { user, SignOut } = useUserAuth();
+    const [user,,,SignOut ] = useAuthState();
     const displayName = user?.displayName;
     const email = user?.email;
     const photoURL = user?.photoURL;
@@ -21,8 +22,8 @@ export default function UserProfile() {
                         <p className="text-2xl font-normal text-white">{displayName ? displayName : "User's Name"}</p>
                         <p className="text-lg font-light text-slate-500"><Link to={"#"}>{email ? email : "user's email"}</Link></p>
                         <button
-                            type='button' onClick={() => {
-                                SignOut()
+                            type='button' onClick={async () => {
+                                await SignOut()
                             }}
                             className="px-3 py-1 rounded-lg font-light bg-slate-600">
                             Sign out
