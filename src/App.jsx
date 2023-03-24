@@ -4,10 +4,11 @@ import {
 } from "react-router-dom"
 import { useAuthState } from './myhooks/useAuthState'
 import Homepage from './routes/homepage'
-import Login from './routes/login'
+import Login from './user_management/login'
 import PageNotFound from './routes/pagenotfound'
-import UserProfile from './routes/profile'
-import Register from './routes/register'
+import UserProfile from './user_management/profile'
+import Register from './user_management/register'
+
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
